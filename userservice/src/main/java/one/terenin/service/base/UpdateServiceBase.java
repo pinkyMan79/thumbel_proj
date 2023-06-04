@@ -11,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import java.util.Base64;
 import java.util.UUID;
 
 @Service
@@ -26,9 +25,9 @@ public class UpdateServiceBase implements UpdateService {
     public Mono<UserForm> updatePhoto(String username, UUID photoId) {
         return repository.findByUsername(username)
                 .flatMap(e -> {
-                    if (photoId.equals(e.getPhotoId())){
+                    if (photoId.equals(e.getPhotoId())) {
                         return Mono.error(new APIException(ErrorCode.PICTURE_ALREADY_IN_USE));
-                    }else {
+                    } else {
                         e.setPhotoId(photoId);
                         return repository.save(e).map(mapper::map);
                     }
@@ -40,9 +39,9 @@ public class UpdateServiceBase implements UpdateService {
     public Mono<UserForm> updateFile(String username, UUID fileId) {
         return repository.findByUsername(username)
                 .flatMap(e -> {
-                    if (e.getFileId().contains(fileId)){
+                    if (e.getFileId().contains(fileId)) {
                         return Mono.error(new APIException(ErrorCode.FILE_ALREADY_ADDED));
-                    }else {
+                    } else {
                         e.getFileId().add(fileId);
                         return repository.save(e).map(mapper::map);
                     }
@@ -54,9 +53,9 @@ public class UpdateServiceBase implements UpdateService {
     public Mono<UserForm> updateUsername(String username, String newUsername) {
         return repository.findByUsername(username)
                 .flatMap(e -> {
-                    if (e.getUsername().equals(newUsername)){
+                    if (e.getUsername().equals(newUsername)) {
                         return Mono.error(new APIException(ErrorCode.USERNAME_IN_USE));
-                    }else {
+                    } else {
                         e.setUsername(username);
                         return repository.save(e).map(mapper::map);
                     }
@@ -69,9 +68,9 @@ public class UpdateServiceBase implements UpdateService {
         return repository.findByUsername(username)
                 .flatMap(e -> {
                     String encodedNewPassword = encoder.encode(newPassword);
-                    if (e.getPassword().equals(encodedNewPassword)){
+                    if (e.getPassword().equals(encodedNewPassword)) {
                         return Mono.error(new APIException(ErrorCode.PASSWORD_ALREADY_IN_USE));
-                    }else {
+                    } else {
                         e.setPassword(encodedNewPassword);
                         return repository.save(e).map(mapper::map);
                     }

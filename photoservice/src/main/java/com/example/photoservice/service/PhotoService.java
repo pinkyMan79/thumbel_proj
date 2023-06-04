@@ -4,7 +4,6 @@ import com.example.photoservice.dto.PhotoRequest;
 import com.example.photoservice.dto.PhotoResponse;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.http.server.ServerHttpResponse;
-import org.springframework.web.bind.annotation.RequestPart;
 import reactor.core.publisher.Mono;
 
 public interface PhotoService {

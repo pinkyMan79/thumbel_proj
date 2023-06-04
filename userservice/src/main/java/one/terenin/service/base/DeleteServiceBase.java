@@ -2,7 +2,6 @@ package one.terenin.service.base;
 
 import lombok.RequiredArgsConstructor;
 import one.terenin.dto.UserForm;
-import one.terenin.entity.UserEntity;
 import one.terenin.exception.children.APIException;
 import one.terenin.exception.common.ErrorCode;
 import one.terenin.mapper.UserMapper;
@@ -11,7 +10,6 @@ import one.terenin.service.DeleteService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -25,11 +23,11 @@ public class DeleteServiceBase implements DeleteService {
     public Mono<UserForm> deletePhoto(String username, UUID photoId) {
         return repository.findByUsername(username)
                 .flatMap(e -> {
-                    if (e.getPhotoId().equals(photoId)){
+                    if (e.getPhotoId().equals(photoId)) {
                         e.setPhotoId(null);
                         return repository.save(e)
                                 .map(mapper::map);
-                    }else {
+                    } else {
                         return Mono.error(new APIException(ErrorCode.NOT_A_USER_PICTURE));
                     }
                 })
