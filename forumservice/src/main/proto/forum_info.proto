@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package forumservice;
+
+option java_package = "one.terenin.forumservice.grpc";
+option java_multiple_files = true;
+
+message ForumCreationRequest {
+  string title = 1;
+  string description = 2;
+}
+
+message ForumGetRequest {
+  string title = 1;
+}
+
+message ForumResponse {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  repeated MessageResponse messages = 4;
+}
+
+message ForumSuccessDeletion {
+  string id = 1;
+  string title = 2;
+}
+
+message MessageRequest {
+  string content = 1;
+  string senderLogin = 2;
+  string forumDestinationId = 3;
+  string forumDestinationTitle = 4;
+}
+
+message MessageResponse {
+    string content = 1;
+    string senderLogin = 2;
+    string forumDestinationTitle = 3;
+  google.protobuf.Timestamp timestamp = 4;
+}
+
+enum ForumErrorCode{
+  NOT_FOUND_BY_TITLE = 0;
+  NOT_FOUND = 1;
+  INVALID_REQUEST_CREATION_TITLE_IN_USE = 2;
+  INVALID_REQUEST_CREATION_BAD_DESCRIPTION = 3;
+  INVALID_MESSAGE_REQUEST = 4;
+}
+
+message CityScoreExceptionResponse {
+  google.protobuf.Timestamp timestamp = 1;
+  ForumErrorCode error_code = 2;
+}
+
+service ForumService {
+
+  rpc createForum(ForumCreationRequest) returns (ForumResponse) {};
+  rpc findForum(ForumGetRequest) returns (ForumResponse) {};
+  rpc deleteForum(ForumGetRequest) returns (ForumSuccessDeletion) {};
+  rpc sendMessage(stream MessageRequest) returns (stream ForumResponse) {};
+  rpc deleteMessage(stream MessageRequest) returns (stream ForumResponse) {};
+
+
+}

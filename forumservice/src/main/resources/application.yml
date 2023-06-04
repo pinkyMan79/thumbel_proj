@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+spring:
+  r2dbc:
+    url: r2dbc:pool:postgres://localhost:5430/semester_forum_db
+    username: postgres
+    password: terenin79
+  liquibase:
+    url: jdbc:postgresql://localhost:5430/semester_forum_db
+    user: postgres
+    password: terenin79
+    change-log: db.changelog/changelog-master.xml
+

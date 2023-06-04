@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-msg-table
+      author: terenin
+      changes:
+        - createTable:
+            tableName: t_msg
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: content
+                  type: VARCHAR(255)
+              - column:
+                  name: forum
+                  type: UUID
+              - column:
+                  name: forumTitle
+                  type: VARCHAR(255)
+              - column:
+                  name: senderLogin
+                  type: VARCHAR(255)
+            constraints:
+              primaryKey:
+                constraintName: pk_t_msg
+                columnNames: id

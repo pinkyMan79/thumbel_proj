@@ -2,3 +2,6 @@ databaseChangeLog:
   - include:
       file: ./DDL/create-forum-table.yaml
       relativeToChangelogFile: true
+  - include:
+      file: ./DDL/create-message-table.yaml
+      relativeToChangelogFile: true
