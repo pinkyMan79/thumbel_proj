@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  minio:
+    image: minio/minio
+    container_name: minioio
+    environment:
+      MINIO_ACCESS_KEY: "Q3AM3UQ867SPQQA43P2F"
+      MINIO_SECRET_KEY: "tfteSlswRu7BJ86wekitnifILbZam1KYY3TG"
+    volumes:
+      - ./data/minio-persistence:/data
+      - ./data/minio-persistence/certs:/certs
+    ports:
+      - "9055:9000"
+  semester-photo-db:
+    container_name: semester-photo-db
+    image: postgres:12-alpine
+    restart: on-failure
+    ports:
+      - "5429:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: terenin79
+      POSTGRES_DB: semester_forum_db
