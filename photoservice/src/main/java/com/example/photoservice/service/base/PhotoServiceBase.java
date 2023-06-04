@@ -2,7 +2,6 @@ package com.example.photoservice.service.base;
 
 import com.example.photoservice.dto.PhotoRequest;
 import com.example.photoservice.dto.PhotoResponse;
-import com.example.photoservice.entity.PhotoEntity;
 import com.example.photoservice.exception.children.PhotoException;
 import com.example.photoservice.exception.common.ErrorCode;
 import com.example.photoservice.mapper.PhotoMapper;
@@ -19,7 +18,6 @@ import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-
 import reactor.core.scheduler.Schedulers;
 
 import java.io.File;

@@ -1,7 +1,6 @@
 package one.terenin.repository;
 
 import one.terenin.entity.UserEntity;
-import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import reactor.core.publisher.Mono;
 
