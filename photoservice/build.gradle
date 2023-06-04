@@ -29,6 +29,9 @@ dependencies {
     implementation "io.jsonwebtoken:jjwt:$jsonWebTokenVersion"
     implementation "javax.xml.bind:jaxb-api:$jaxbApiVersion"
 
+    compileOnly('org.projectlombok:lombok')
+    annotationProcessor "org.projectlombok:lombok"
+    annotationProcessor "org.mapstruct:mapstruct-processor:$mapStructVersion"
     implementation 'org.projectlombok:lombok:1.18.26'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-testcontainers'
