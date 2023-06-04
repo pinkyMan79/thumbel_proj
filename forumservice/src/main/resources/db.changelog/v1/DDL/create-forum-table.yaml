@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-forum-table
+      author: terenin
+      changes:
+        - createTable:
+            tableName: t_forum
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  name: messages
+                  type: uuid[]
+            constraints:
+              primaryKey:
+                constraintName: pk_t_forum
+                columnNames: id

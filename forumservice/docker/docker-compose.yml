@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  MyRabbit:
+    container_name: myRabbit
+    image: rabbitmq:3.11-management
+    restart: on-failure
+    hostname: localhost
+    ports:
+      - "5671:5672"
+      - "15671:15672"
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6380:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - cache:/data
+  semester-forum-db:
+    container_name: semester-forum-db
+    image: postgres:12-alpine
+    restart: on-failure
+    ports:
+      - "5430:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: terenin79
+      POSTGRES_DB: semester_forum_db
+volumes:
+  cache:
+    driver: local
