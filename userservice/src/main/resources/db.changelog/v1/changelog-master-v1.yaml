@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: ./DDL/create_table_user_friends.sql
+      relativeToChangelogFile: true
