@@ -2,6 +2,9 @@ package com.example.photoservice.service.base;
 
 import com.example.photoservice.dto.PhotoRequest;
 import com.example.photoservice.dto.PhotoResponse;
+import com.example.photoservice.entity.PhotoEntity;
+import com.example.photoservice.exception.children.PhotoException;
+import com.example.photoservice.exception.common.ErrorCode;
 import com.example.photoservice.mapper.PhotoMapper;
 import com.example.photoservice.repository.PhotoRepository;
 import com.example.photoservice.service.PhotoService;
@@ -42,10 +45,15 @@ public class PhotoServiceBase implements PhotoService {
                         ("Received File : " + fp.filename()))
                 .flatMap(fp -> fp.
                         transferTo(basePath.resolve(fp.filename())))
-                .then().subscribeOn(Schedulers.parallel()).subscribe();
+                .then()
+                .switchIfEmpty(Mono.error(new PhotoException(ErrorCode.FILE_NOT_UPLOADED)))
+                .subscribeOn(Schedulers.parallel())
+                .subscribe();
         return repository.save(mapper.map(request).toBuilder()
                         .photoId(UUID.randomUUID())
-                        .checksum(checkSum).build()).map(mapper::map);
+                        .checksum(checkSum).build())
+                        .map(mapper::map)
+                .switchIfEmpty(Mono.error(new PhotoException(ErrorCode.FILE_MAP_ERROR)));
     }
 
     @SneakyThrows
@@ -60,6 +68,8 @@ public class PhotoServiceBase implements PhotoService {
         ClassPathResource resource = new ClassPathResource(fileName);
         File file = resource.getFile();
         return zeroCopyResponse.writeWith(file, 0,
-                file.length()).subscribeOn(Schedulers.parallel());
+                file.length())
+                .switchIfEmpty(Mono.error(new PhotoException(ErrorCode.DOWNLOAD_FAILED)))
+                .subscribeOn(Schedulers.parallel());
     }
 }
