@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  semester-media-db:
+    container_name: semester-media-db
+    image: postgres:12-alpine
+    restart: on-failure
+    ports:
+      - "5428:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: terenin79
+      POSTGRES_DB: semester_media_db

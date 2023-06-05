@@ -34,4 +34,9 @@ public class AuthController implements AuthApi {
             log.info("{}{}", "success added user with params: \n", response.toString());
         });
     }
+
+    @Override
+    public Mono<String> parseJwt(String token) {
+        return service.doUpdateAndParseToken(token);
+    }
 }
