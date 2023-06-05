@@ -1,4 +1,4 @@
 databaseChangeLog:
   - include:
-      file: ./DDL/create_table_photo.sql
+      file: ./DDL/create_table_file.sql
       relativeToChangelogFile: true

@@ -1,0 +1,10 @@
+spring:
+  r2dbc:
+    url: r2dbc:pool:postgres://localhost:5428/semester_media_db
+    username: postgres
+    password: terenin79
+  liquibase:
+    url: jdbc:postgresql://localhost:5428/semester_media_db
+    user: postgres
+    password: terenin79
+    change-log: db/changelog/changelog-master.xml

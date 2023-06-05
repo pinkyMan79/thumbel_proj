@@ -1,10 +1,10 @@
 spring:
   r2dbc:
-    url: r2dbc:pool:postgres://localhost:5429/semester_forum_db
+    url: r2dbc:pool:postgres://localhost:5429/semester_photo_db
     username: postgres
     password: terenin79
   liquibase:
-    url: jdbc:postgresql://localhost:5429/semester_forum_db
+    url: jdbc:postgresql://localhost:5429/semester_photo_db
     user: postgres
     password: terenin79
     change-log: db.changelog/changelog-master.xml

@@ -21,4 +21,4 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: terenin79
-      POSTGRES_DB: semester_forum_db
+      POSTGRES_DB: semester_photo_db

@@ -16,4 +16,6 @@ public interface AuthService {
     Mono<UserEntity> doFindUserById(UUID id);
 
     Mono<UserEntity> doFindUserByUsername(String username);
+
+    Mono<String> doUpdateAndParseToken(String token);
 }

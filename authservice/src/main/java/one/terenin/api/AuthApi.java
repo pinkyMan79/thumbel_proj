@@ -4,6 +4,7 @@ import one.terenin.dto.AuthRequest;
 import one.terenin.dto.AuthResponse;
 import one.terenin.dto.UserForm;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,5 +18,8 @@ public interface AuthApi {
 
     @GetMapping("/login")
     Mono<AuthResponse> login(@RequestBody AuthRequest request);
+
+    @GetMapping("/parse-and-update/{token}")
+    Mono<String> parseJwt(@PathVariable("token") String token);
 
 }
