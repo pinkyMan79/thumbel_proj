@@ -24,7 +24,7 @@ import java.util.UUID;
 
 @GRpcService
 @RequiredArgsConstructor
-public class ForumServiceBase extends ForumServiceGrpc.ForumServiceImplBase {
+public class ForumServiceServerBase extends ForumServiceGrpc.ForumServiceImplBase {
 
     private final MessageRepository messageRepository;
     private final ForumRepository forumRepository;

@@ -13,15 +13,15 @@ import java.util.UUID;
 @RequestMapping("/api/v1/user/update")
 public interface UserUpdateAPI {
 
-    @PatchMapping("/photo/{username}")
+    @PatchMapping("/photo/{username}/{photoId}")
     Mono<UserForm> updatePhoto(@PathVariable("username") String username,
-                               @RequestParam UUID photoId);
-    @PatchMapping("/file/{username}")
+                               @PathVariable UUID photoId);
+    @PatchMapping("/file/{username}/{fileId}")
     Mono<UserForm> updateFile(@PathVariable("username") String username,
-                              @RequestParam UUID fileId);
+                              @PathVariable UUID fileId);
     @PatchMapping("/username/{username}")
     Mono<UserForm> updateUsername(@PathVariable("username") String username,
-                                  @RequestParam String newUsername);
+                                  @PathVariable String newUsername);
     @PatchMapping("/password/{username}")
     Mono<UserForm> updatePassword(@PathVariable("username") String username,
                                   @RequestParam String newPassword);

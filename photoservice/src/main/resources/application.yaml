@@ -1,3 +1,6 @@
+server:
+  port: 8081
+
 spring:
   r2dbc:
     url: r2dbc:pool:postgres://localhost:5429/semester_photo_db
