@@ -26,10 +26,9 @@ import java.util.UUID;
 
 import static org.hamcrest.Matchers.any;
 import static org.hamcrest.Matchers.anyOf;
-import static org.junit.jupiter.api.Assertions.*;
 import static reactor.core.publisher.Mono.when;
 
-class ForumServiceBaseTest {
+class ForumServiceServerBaseTest {
 
     @Mock
     private MessageRepository messageRepository;
@@ -41,12 +40,12 @@ class ForumServiceBaseTest {
 
     private final ForumMapper forumMapper = new ForumMapperImpl();
 
-    private ForumServiceBase forumServiceBase;
+    private ForumServiceServerBase forumServiceServerBase;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        forumServiceBase = new ForumServiceBase(messageRepository, forumRepository, messageMapper, forumMapper);
+        forumServiceServerBase = new ForumServiceServerBase(messageRepository, forumRepository, messageMapper, forumMapper);
     }
 
     @Test
@@ -73,7 +72,7 @@ class ForumServiceBaseTest {
             }
         };
 
-        forumServiceBase.createForum(request, responseObserver);
+        forumServiceServerBase.createForum(request, responseObserver);
     }
 
     private Object anyOf(Class<ForumEntity> forumEntityClass) {
@@ -107,7 +106,7 @@ class ForumServiceBaseTest {
             }
         };
 
-        forumServiceBase.findForum(request, responseObserver);
+        forumServiceServerBase.findForum(request, responseObserver);
     }
 
     @Test
@@ -133,7 +132,7 @@ class ForumServiceBaseTest {
             }
         };
 
-        forumServiceBase.deleteForum(request, responseObserver);
+        forumServiceServerBase.deleteForum(request, responseObserver);
     }
 
     @Test
@@ -177,7 +176,7 @@ class ForumServiceBaseTest {
             }
         };
 
-        StreamObserver<MessageRequest> messageRequestStreamObserver = forumServiceBase.sendMessage(responseObserver);
+        StreamObserver<MessageRequest> messageRequestStreamObserver = forumServiceServerBase.sendMessage(responseObserver);
         messageRequestStreamObserver.onNext(request);
         messageRequestStreamObserver.onCompleted();
     }

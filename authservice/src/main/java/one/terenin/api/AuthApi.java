@@ -16,7 +16,7 @@ public interface AuthApi {
     @PostMapping("/register")
     Mono<UserForm> register(@RequestBody UserForm user);
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     Mono<AuthResponse> login(@RequestBody AuthRequest request);
 
     @GetMapping("/parse-and-update/{token}")

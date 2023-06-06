@@ -12,12 +12,12 @@ import java.util.UUID;
 @RequestMapping("/api/v1/user/delete")
 public interface UserDeleteAPI {
 
-    @DeleteMapping ("/photo/{username}")
+    @DeleteMapping ("/photo/{username}/{photoId}")
     Mono<UserForm> deletePhoto(@PathVariable("username") String username,
-                               @RequestParam UUID photoId);
-    @DeleteMapping("/file/{username}")
+                               @PathVariable UUID photoId);
+    @DeleteMapping("/file/{username}/{fileId}")
     Mono<UserForm> deleteFile(@PathVariable("username") String username,
-                              @RequestParam UUID fileId);
+                              @PathVariable UUID fileId);
     @DeleteMapping("/password/{username}")
     Mono<UserForm> delete(@PathVariable String username);
 

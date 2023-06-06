@@ -1,3 +1,6 @@
+server:
+  port: 8079
+
 spring:
   r2dbc:
     url: r2dbc:pool:postgres://localhost:5428/semester_media_db

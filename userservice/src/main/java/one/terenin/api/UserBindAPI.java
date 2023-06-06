@@ -12,11 +12,11 @@ import java.util.UUID;
 @RequestMapping("/api/v1/user/bind")
 public interface UserBindAPI {
 
-    @PatchMapping("/photo/{username}")
+    @PatchMapping("/photo/{username}/{photoId}")
     Mono<UserForm> bindPhoto(@PathVariable("username") String username,
-                             @RequestParam UUID photoId);
-    @PatchMapping("/file/{username}")
+                             @PathVariable UUID photoId);
+    @PatchMapping("/file/{username}/{fileId}")
     Mono<UserForm> bindFile(@PathVariable("username") String username,
-                            @RequestParam UUID fileId);
+                            @PathVariable UUID fileId);
 
 }
